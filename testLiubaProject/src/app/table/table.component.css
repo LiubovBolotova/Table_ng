@@ -1,0 +1,48 @@
+
+table {
+    width: 900px;
+    background-color: indigo;
+}
+
+tr {
+    color: darkslateblue;
+    text-align: center;
+}
+td {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #c2e0fb;
+}
+thead td:hover {
+    background-color: gold;
+    cursor: pointer;
+}
+thead td {
+    height: 60px;
+    background-color: mediumvioletred;
+    color: aliceblue;
+}
+.myTable {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.sidebar {
+    height: 200px;
+    width: 500px;
+    display: flex;
+justify-content: space-between;
+}
+
+.sidebar label {
+box-sizing: border-box;
+margin: 0 10px 10px;
+}
+
+.choose-Age {
+    display: flex;
+}

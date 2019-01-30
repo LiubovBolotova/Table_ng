@@ -1,0 +1,110 @@
+<div class="myTable">
+    <div class="sidebar">
+        <label>Choose Age
+            <div class="choose-Age">
+                <label>
+                    from 
+                    <input [value] = "ageFrom" 
+                           type="number" 
+                           placeholder="1" min="1" max="100" 
+                           (change)="ageFrom = $event.target.value;generalFiltering(newFilteredList)"/>
+                </label>
+
+                <label>
+                    to
+                    <input [value] = "ageTo" 
+                           type="number"  
+                           placeholder="100"  min="1" max="100" 
+                           (change)="ageTo = $event.target.value;generalFiltering(newFilteredList)"/>
+                </label>
+            </div>
+
+            <button type="button" 
+                    name="age" 
+                    (click)="generalFiltering(newFilteredList)">
+                 Filter
+            </button>
+        </label>
+
+        <label>Choose Sex
+            <select [value]="sex" (change)="sex = $event.target.value;generalFiltering(newFilteredList)" class="selectSex">
+                <option>all</option>
+
+                <option>male</option>
+
+                <option>female</option>
+            </select>
+        </label>
+
+        <label>Choose Company
+            <select class="selectCompany" 
+                    [value]="company" 
+                    (change)="company = $event.target.value;generalFiltering(newFilteredList)">
+            <option></option>
+
+            <option *ngFor = "let company of companiesListSingle">
+                {{company}}
+            </option>
+            </select>
+        </label>
+
+        <label>
+            Search
+            <input type="text" 
+                   [value]="search" 
+                   (change)="search = $event.target.value;generalFiltering(newFilteredList)" 
+                   placeholder="email,first,last"/>
+        </label>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <td (click)="generalFiltering(newFilteredList,'first')">
+                First name
+            </td>
+
+            <td (click)="generalFiltering(newFilteredList,'last')">
+                Last name
+            </td>
+
+            <td (click)="generalFiltering(newFilteredList,'sex')">
+                Sex
+            </td>
+
+            <td (click)="generalFiltering(newFilteredList,'age')">
+                Age
+            </td>
+
+            <td (click)="generalFiltering(newFilteredList,'email')">
+                Email
+            </td>
+
+            <td (click)="generalFiltering(newFilteredList,'phone')">
+                Phone number
+            </td>
+
+            <td (click)="generalFiltering(newFilteredList,'company')">
+                Company
+            </td>
+        </tr>
+        </thead>
+
+        <tbody> 
+          <tr *ngFor = "let user of newFilteredList"> 
+            <td>{{user.first}}</td>
+
+            <td>{{user.last}}</td>
+
+            <td>{{user.sex}}</td>
+
+            <td>{{user.age}}</td>
+
+            <td>{{user.email}}</td>
+
+            <td>{{user.phone}}</td>
+
+            <td>{{user.company}}</td>
+          </tr>
+        </tbody>
+    </table>
