@@ -4,10 +4,12 @@
             <div class="choose-Age">
                 <label>
                     from 
-                    <input [value] = "ageFrom" 
+                    <input 
                            type="number" 
-                           placeholder="1" min="1" max="100" 
-                           (change)="ageFrom = $event.target.value;generalFiltering(newFilteredList)"/>
+                           placeholder="1"
+                           min="1"
+                           max="100" 
+                           (change)="generalFiltering('ageFrom', $event.target.value)"/>
                 </label>
 
                 <label>
@@ -15,19 +17,14 @@
                     <input [value] = "ageTo" 
                            type="number"  
                            placeholder="100"  min="1" max="100" 
-                           (change)="ageTo = $event.target.value;generalFiltering(newFilteredList)"/>
+                           (change)="generalFiltering('ageTo', $event.target.value)"/>
                 </label>
             </div>
 
-            <button type="button" 
-                    name="age" 
-                    (click)="generalFiltering(newFilteredList)">
-                 Filter
-            </button>
         </label>
 
         <label>Choose Sex
-            <select [value]="sex" (change)="sex = $event.target.value;generalFiltering(newFilteredList)" class="selectSex">
+            <select [value]="sex" (change)="generalFiltering('sex',$event.target.value )" class="selectSex">
                 <option>all</option>
 
                 <option>male</option>
@@ -39,7 +36,7 @@
         <label>Choose Company
             <select class="selectCompany" 
                     [value]="company" 
-                    (change)="company = $event.target.value;generalFiltering(newFilteredList)">
+                    (change)="generalFiltering('company', $event.target.value)">
             <option></option>
 
             <option *ngFor = "let company of companiesListSingle">
@@ -51,8 +48,8 @@
         <label>
             Search
             <input type="text" 
-                   [value]="search" 
-                   (change)="search = $event.target.value;generalFiltering(newFilteredList)" 
+                   [value]="query" 
+                   (change)="generalFiltering('query', $event.target.value)" 
                    placeholder="email,first,last"/>
         </label>
     </div>
@@ -60,31 +57,31 @@
     <table>
         <thead>
         <tr>
-            <td (click)="generalFiltering(newFilteredList,'first')">
+            <td (click)="generalFiltering('sort', 'first')">
                 First name
             </td>
 
-            <td (click)="generalFiltering(newFilteredList,'last')">
+            <td (click)="generalFiltering('sort', 'last')">
                 Last name
             </td>
 
-            <td (click)="generalFiltering(newFilteredList,'sex')">
+            <td (click)="generalFiltering('sort', 'sex')">
                 Sex
             </td>
 
-            <td (click)="generalFiltering(newFilteredList,'age')">
+            <td (click)="generalFiltering('sort', 'age')">
                 Age
             </td>
 
-            <td (click)="generalFiltering(newFilteredList,'email')">
+            <td (click)="generalFiltering('sort', 'email')">
                 Email
             </td>
 
-            <td (click)="generalFiltering(newFilteredList,'phone')">
+            <td (click)="generalFiltering('sort', 'phone')">
                 Phone number
             </td>
 
-            <td (click)="generalFiltering(newFilteredList,'company')">
+            <td (click)="generalFiltering('sort', 'company')">
                 Company
             </td>
         </tr>
