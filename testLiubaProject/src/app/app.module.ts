@@ -5,8 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { ContentComponent } from './content/content.component';
 import { TableComponent } from './table/table.component';
 import { TableServiceService } from './table-service.service';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
@@ -15,8 +13,6 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    ContentComponent,
     TableComponent
   ],
   imports: [

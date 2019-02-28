@@ -11,11 +11,10 @@ export class TableComponent implements OnInit {
   public filterMap = {
     ageFrom: 1,
     ageTo: 100,
-    company: '',
-    sex: 'all',
-    query: '',
-    sort: '',
-    
+    company: "",
+    sex: "all",
+    query: "",
+    sort: ""
   };
 
   public newFilteredList: TUser[] = [];
@@ -24,7 +23,6 @@ export class TableComponent implements OnInit {
   private predicates: object;
   private companiesList: string[] = [];
   private myFilteredList: TUser[] = [];
-
 
   public constructor(private _tableServiceService: TableServiceService) {}
 
@@ -51,41 +49,61 @@ export class TableComponent implements OnInit {
   public generalFiltering(actionName: string, value: string | number): void {
     this.filterMap[actionName] = value;
     this.newFilteredList = this.myFilteredList
-      .filter(item => item.age >= (this.filterMap.ageFrom || 1) && item.age <= (this.filterMap.ageTo || 100 ))
-      .filter(item => item.company === this.filterMap.company || this.filterMap.company === "")
-      .filter(item => item.sex === this.filterMap.sex || this.filterMap.sex === "all")
       .filter(
-          element =>
-            element.email.indexOf(this.filterMap.query) !== -1 ||
-            element.first.indexOf(this.filterMap.query) !== -1 ||
-            element.last.indexOf(this.filterMap.query) !== -1
-        )
+        item =>
+          item.age >= (this.filterMap.ageFrom || 1) &&
+          item.age <= (this.filterMap.ageTo || 100)
+      )
+      .filter(
+        item =>
+          item.company === this.filterMap.company ||
+          this.filterMap.company === ""
+      )
+      .filter(
+        item => item.sex === this.filterMap.sex || this.filterMap.sex === "all"
+      )
+      .filter(
+        element =>
+          element.email.indexOf(this.filterMap.query) !== -1 ||
+          element.first.indexOf(this.filterMap.query) !== -1 ||
+          element.last.indexOf(this.filterMap.query) !== -1
+      );
     this.sortData(value);
-    }
+  }
 
-    public sortData(value: string | number): void {
-     
+  public sortData(value: string | number): void {
     this.predicates = {
-      
-      'asc' : function(a, b){ if (a[value] < b[value]) {
-        console.log(value)
-        return -1;
-      } else if (a[value] > b[value]) {
-        return 1;
-      } else {
-        return 0;
-      }},
-      'desc': function(a, b){ if (a[value] > b[value]) {
-        return -1;
-      } else if (a[value] < b[value]) {
-        return 1;
-      } else {
-        return 0;
+      asc: function(a, b) {
+
+        if (a[value] < b[value]) {
+          console.log(value);
+          return -1;
+
+        } else if (a[value] > b[value]) {
+          return 1;
+
+        } else {
+          return 0;
+        }
+      },
+      desc: function(a, b) {
+
+        if (a[value] > b[value]) {
+          return -1;
+
+        } else if (a[value] < b[value]) {
+          return 1;
+
+        } else {
+          return 0;
+        }
       }
-      }}
-      this.sortingClicked = !this.sortingClicked;
-      this.newFilteredList.sort(this.predicates[this.sortingClicked? 'asc' : 'desc'])
-      }
+    };
+    this.sortingClicked = !this.sortingClicked;
+    this.newFilteredList.sort(
+      this.predicates[this.sortingClicked ? "asc" : "desc"]
+    );
+  }
 
   private _getSingleComapnies() {
     this.companiesListSingle = this.myFilteredList.map(item => item.company);
@@ -96,5 +114,4 @@ export class TableComponent implements OnInit {
     });
     return this.companiesListSingle;
   }
-
 }
