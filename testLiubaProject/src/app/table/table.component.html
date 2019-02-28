@@ -14,17 +14,19 @@
 
                 <label>
                     to
-                    <input [value] = "ageTo" 
+                    <input 
                            type="number"  
-                           placeholder="100"  min="1" max="100" 
-                           (change)="generalFiltering('ageTo', $event.target.value)"/>
+                           placeholder="100" 
+                           min="1"
+                           max="100"
+                          (change)="generalFiltering('ageTo', $event.target.value)"/>
                 </label>
             </div>
 
         </label>
 
         <label>Choose Sex
-            <select [value]="sex" (change)="generalFiltering('sex',$event.target.value )" class="selectSex">
+            <select (change)="generalFiltering('sex',$event.target.value )" class="selectSex">
                 <option>all</option>
 
                 <option>male</option>
@@ -35,7 +37,6 @@
 
         <label>Choose Company
             <select class="selectCompany" 
-                    [value]="company" 
                     (change)="generalFiltering('company', $event.target.value)">
             <option></option>
 
@@ -48,7 +49,6 @@
         <label>
             Search
             <input type="text" 
-                   [value]="query" 
                    (change)="generalFiltering('query', $event.target.value)" 
                    placeholder="email,first,last"/>
         </label>

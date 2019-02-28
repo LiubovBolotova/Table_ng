@@ -1,27 +1,34 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { NgForm, FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit{
 
-  @Output() public plusClicked:  EventEmitter<number> = new EventEmitter();
+  public userForm =  new FormGroup({
+          
+         "userName": new FormControl('test', Validators.required),
+        "userEmail": new FormControl('test@mail.ru', [Validators.required, Validators.email]),
+     });
 
-  @Output() public minusClicked:  EventEmitter<number> = new EventEmitter();
 
-  public countDiff = 0;
 
-  constructor() { }
 
-  ngOnInit() {
-  }
+   ngOnInit(){}
+  
+  public answers: {}[] = [{
+    type: 'yes',
+    text: 'Да'
+  }, {
+    type: 'no',
+    text: 'Нет'
+  }];
 
-  public changeCounter(event){
-
-    this.countDiff = Number(event.target.value);
-
+  public submitForm() {
+    console.log('my form is Submited!', this.userForm.value)    
   }
 
 }

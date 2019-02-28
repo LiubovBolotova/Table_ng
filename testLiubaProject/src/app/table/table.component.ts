@@ -10,11 +10,12 @@ import {TableServiceService} from "../table-service.service";
 export class TableComponent implements OnInit {
   public filterMap = {
     ageFrom: 1,
-    ageTo: 120,
+    ageTo: 100,
     company: '',
     sex: 'all',
     query: '',
     sort: '',
+    
   };
 
   public newFilteredList: TUser[] = [];
@@ -49,9 +50,8 @@ export class TableComponent implements OnInit {
 
   public generalFiltering(actionName: string, value: string | number): void {
     this.filterMap[actionName] = value;
-
     this.newFilteredList = this.myFilteredList
-      .filter(item => item.age >= this.filterMap.ageFrom && item.age <= this.filterMap.ageTo)
+      .filter(item => item.age >= (this.filterMap.ageFrom || 1) && item.age <= (this.filterMap.ageTo || 100 ))
       .filter(item => item.company === this.filterMap.company || this.filterMap.company === "")
       .filter(item => item.sex === this.filterMap.sex || this.filterMap.sex === "all")
       .filter(
